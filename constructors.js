@@ -34,12 +34,13 @@ class Rental {
       this.rentalEndDate = rentalEndDate;
     }
     calculateRentalDuration() {
-      const rentalduration = this.rentalEndDate - this.rentalStartDate;
-      const durationInDays =  this.rentalEndDate - this.rentalStartDate / oneDay;
-      return durationInDays;
+        const startDate = this.rentalStartDate.getTime();
+        const endDate = this.rentalEndDate.getTime();
+        const duration = endDate - startDate;
+        return Math.ceil(duration / (1000 * 60 * 60 * 24)); // Convert milliseconds to days and round up
+      }
     }
-  }
-  const myCar = new Car('Toyota', 'Camry', 2020);
+  const myCar = new Car('Toyota', 'Camry', 2020,true);
 const myRental = new Rental(myCar, 'John Doe', '2023-05-01', '2023-05-07');
 const rentalduration = myRental.calculateRentalDuration();
 console.log(`The rental duration is ${rentalDuration} days.`);
